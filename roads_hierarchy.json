@@ -1,0 +1,8 @@
+{
+    "name": "Speed Zone",
+    "children": [
+      {"name": "<=50", "children": [{"Year": "2018"},{"Year": "2019"}, {"Year": "2020"}, {"Year": "2021"}, {"Year": "2022"}]},
+      {"name": "60-90", "children": [{"Year": "2018"},{"Year": "2019"}, {"Year": "2020"}, {"Year": "2021"}, {"Year": "2022"}]},
+      {"name": "100-110", "children": [{"Year": "2018"},{"Year": "2019"}, {"Year": "2020"}, {"Year": "2021"}, {"Year": "2022"}]}
+    ]
+}
