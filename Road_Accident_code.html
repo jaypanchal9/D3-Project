@@ -76,9 +76,6 @@
       stroke: red;
     }
 
-    /*
-    USE this css rule for the node labels that you will add
-    */
     .label {
       font: 12px sans-serif;
       fill: rgb(0, 0, 0);
@@ -87,9 +84,6 @@
       text-align: cener;
     }
 
-    /*
-    USE these two css rules for the tooltip that you will add
-    */
     #tooltip-container {
       position: absolute;
       background-color: white;
@@ -103,9 +97,6 @@
       text-align: left;
     }
 
-    /*
-    USE these four css rules for the highlighting that you will add
-    */
     .node-highlighted {
       stroke: darkorange;
       fill:white;
@@ -156,11 +147,6 @@
 
     <script type="module">
 
-      /*
-      NOTICE: "#region" and "#endregion" provide existing code and variables that will be used in the visualisation. Avoid modifying unless absolutely necessary!
-      */
-
-      //// #region: load external resources
       // load the legend function (ref:  https://github.com/yingyangvis )
       const functionURL = "https://raw.githubusercontent.com/jaypanchal9/D3-Project/bdddb33efe361b129d24d7f5c207b4a0ebe742b8/color-legend.js";
       const response = await fetch(functionURL);
@@ -259,33 +245,12 @@
         .attr("transform", d => "translate(" + d.y + "," + d.x + ")");
       //// #endregion
 
-      /*
-      ADD YOUR CODE HERE FOLLOWING THE INSTRUCTION
-      */
       node.append("circle")
         .attr("r", function(d) {
             return d.children ? 10 : 5; // Larger radius for parent nodes, smaller for child nodes
         })
         .style("fill", "#69b3a2");
-      // Add a shape/symbol to the node
-      // NOTE you can add visual variables to the node if needed. You can also use internal_node and leaf_node classes if they make sense in your design.
-      //
-      // Hover and highlighting pointers:
-      // Hover the mouse on the leaf nodes to show the year and total number of accidents of that year and speed zone on the tooltip, 
-      // you can use the css rule of tooltip defined in the style sheet in this file. 
-      // Hover the mouse on the non-leaf nodes to show the number of their children on the tooltip, highlight the node with an outline or fill.  
-      // If the node is a leaf node (year node): keep the timeline bars attached to the node and all nodes that have the 
-      // same value full opaque, and turn other timeline bars transparent (0.1<opacity<0.5).
-      // When node is highlighted, highlight all links attached to the nodes, and their parents to the root, with bigger thickness and a different colour.
-      // If the node is a speed zone node: keep the timeline bars attached to the node's children full opaque, and turn other timeline bars transparent (0.1<opacity<0.5).
-      // Highlight all links between the node and its children, as well as to the root, with bigger thickness and a different colour.
-      // When a node is highlighted, if the node is the root node: do nothing! except highlight with the outline you've already done.
-      // You can use the css rule of highlighting defined in the style sheet in this file
-      
 
-      /*
-      ADD YOUR CODE HERE FOLLOWING THE INSTRUCTION
-      */
       // add the label to the node
       node.append("text")
         .attr("class", "label")
@@ -303,50 +268,20 @@
       // the path of the accident data
       const accidentDataPath = "https://raw.githubusercontent.com/jaypanchal9/D3-Project/refs/heads/main/accident_data.csv";
 
-      /*
-      ADD YOUR CODE HERE FOLLOWING THE INSTRUCTION
-      */
       // read the accident data from the path
       let accidentData = await d3.csv(accidentDataPath);
 
 
-        /*
-        ADD YOUR CODE HERE FOLLOWING THE INSTRUCTION
-        */
         // keep a reference to the accident data in accidentDataPointer variable
         accidentDataPointer = accidentData;
 
-        /*
-        ADD YOUR CODE HERE FOLLOWING THE INSTRUCTION
-        */
+
         // get the data range of the accident data
         let maxAccidents = d3.max(accidentDataPointer, d => +d.AccidentCount);
 
-        /*
-        ADD YOUR CODE HERE FOLLOWING THE INSTRUCTION
-        */
         // map the data value domain to a scale range
         let colorScale = d3.scaleSequential([0, maxAccidents], d3.interpolateTurbo);
 
-        /*
-        ADD YOUR CODE HERE FOLLOWING THE INSTRUCTION
-        */
-        // draw the colour legend, you can use legend() function, which gets an object with the parameters and default values below.
-        //     color,
-        //     title,
-        //     tickSize = 6,
-        //     width = 320,
-        //     height = 44 + tickSize,
-        //     marginTop = 18,
-        //     marginRight = 0,
-        //     marginBottom = 16 + tickSize,
-        //     marginLeft = 0,
-        //     ticks = width / 64,
-        //     tickFormat,
-        //     tickValues
-        // the colour scheme and scale must be suitable for the data and the patterns listed on the left side panel. 
-        // Any part of the code below could be wrong, you must modify it and make sure it is correct for your design.
-        //
         legend({
             color: colorScale,
             title: "Accident Counts",
@@ -358,9 +293,6 @@
         });
         
 
-        /*
-        ADD YOUR CODE HERE FOLLOWING THE INSTRUCTION
-        */
         const tooltip = d3.select("#tooltip-container");
         // To map the value scale to a colour scale using your chosen colour palette
 
@@ -383,15 +315,6 @@
               .attr("height", 20)
               .attr("fill", d => colorScale(d.AccidentCount));
       });
-
-        /*
-        ADD YOUR CODE HERE FOLLOWING THE INSTRUCTION
-        */
-        // Add the timeline bars to the leaf nodes, and use the colour scale you defined above to colour the bar/line based on the accident data
-        // Hint: to create and position the timeline bars, you can append lines (or rectangles) with a stroke width of about 10px.
-        // Use y position of the respective year node, and x position of respective day for y and x positions of each line respectively.
-        // The length of each line should span the distance between the vertical dashed lines that separate the days.
-        // You might need to make some adjustments by adding offsets for optimal alignment.
 
       //Modiying the link to Assign unique IDs to each link using parent and current node names
       svgGroup.selectAll(".link")
@@ -478,13 +401,6 @@
                   .classed("timeline-bar-transparent", false)
                   .style("opacity", 1);
           });
-
-                /*
-                ADD YOUR CODE HERE FOLLOWING THE INSTRUCTION
-                */
-                // hover the mouse on the timeline bars to show the speed zone, year, day of week and number of accidents on the tooltip
-                // highlight the timeline bar with bigger thickness when mouse hovers
-                // you can again use the css rules of tooltip and highlighting defined in the style sheet in this file
 
     </script>
 </body>
