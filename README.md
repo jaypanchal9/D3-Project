@@ -1,4 +1,4 @@
-# Road Accidents Analysis of Melbournee, Victoria
+# Road Accidents Analysis of Melbourne, Victoria
 
 This project visualizes road accidents data in the Australian state of Victoria from 2018 to 2022 using a tree diagram and an interactive timeline. Built with D3.js, HTML, and CSS, the visualization allows users to explore accident trends by speed zones, weekdays, and years.
 
